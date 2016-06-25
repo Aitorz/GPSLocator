@@ -30,15 +30,41 @@ namespace GPSLocator.Droid
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
-		}
-	}
+            // Get our button from the layout resource,
+            // and attach an event to it
+            //Button button = FindViewById<Button> (Resource.Id.myButton);
+
+            //button.Click += delegate {
+            //button.Text = string.Format ("{0} clicks!", count++);
+            //};
+
+            _addressText = FindViewById<TextView>(Resource.Id.address_text);
+            _locationText = FindViewById<TextView>(Resource.Id.location_text);
+            FindViewById<TextView>(Resource.Id.get_address_button).Click += AddressButton_OnClick;
+
+            InitializeLocationManager();
+        }
+
+        void InitializeLocationManager()
+        {
+            _locationManager = (LocationManager)GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+            };
+            IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+
+            if (acceptableLocationProviders.Any())
+            {
+                _locationProvider = acceptableLocationProviders.First();
+            }
+            else
+            {
+                _locationProvider = string.Empty;
+            }
+            Log.Debug(TAG, "Using " + _locationProvider + ".");
+        }
+    }
 }
 
 
