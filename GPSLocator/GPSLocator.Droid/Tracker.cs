@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -12,7 +13,8 @@ using Android.Widget;
 
 namespace GPSLocator.Droid
 {
-    class Tracker
+    public class Tracker : 
     {
+
     }
 }

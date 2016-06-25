@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
+using Android;
 using Android.App;
 
 // Information about this assembly is defined by the following attributes.
@@ -13,6 +14,10 @@ using Android.App;
 [assembly: AssemblyCopyright ("joe")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
+
+[assembly: UsesPermission(Manifest.Permission.AccessFineLocation)]
+[assembly: UsesPermission(Manifest.Permission.AccessCoarseLocation)]
+[assembly: UsesPermission(Manifest.Permission.Internet)]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

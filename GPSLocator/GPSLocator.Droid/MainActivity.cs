@@ -6,19 +6,16 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Location;
-
-public Location getLocation() {
-    try {
-        locationManager = Context.getSystemService(Context.LOCATION_SERVICE);
-    }
-}
+using Android.Locations;
 
 namespace GPSLocator.Droid
 {
+
     [Activity(Label = "GPSLocator.Droid", MainLauncher = true, Icon = "@drawable/icon")]
+
     public class MainActivity : Activity
     {
+
         int count = 1;
   
 
