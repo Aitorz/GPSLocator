@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>2723f1ba-37c0-4a3d-a5dc-8f9603d6f9bb</ProjectGuid>
+    <ProjectGuid>912883fe-662f-4b11-87ed-6dba0f06ebba</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GPSLocator.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
