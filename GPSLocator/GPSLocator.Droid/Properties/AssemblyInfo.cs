@@ -1,9 +1,14 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
+using Android;
 using Android.App;
 
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
+
+[assembly: UsesPermission(Manifest.Permission.AccessFineLocation)]
+[assembly: UsesPermission(Manifest.Permission.AccessCoarseLocation)]
+[assembly: UsesPermission(Manifest.Permission.Internet)]
 
 [assembly: AssemblyTitle ("GPSLocator.Droid")]
 [assembly: AssemblyDescription ("")]

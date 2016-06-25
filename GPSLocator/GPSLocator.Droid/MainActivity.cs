@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Location;
+using Android.Locations;
 
 namespace GPSLocator.Droid
 {
@@ -14,32 +14,34 @@ namespace GPSLocator.Droid
     public class MainActivity : Activity, ILocationListener
     {
         static readonly string TAG = "X:" + typeof(Activity1).Name;
-        //TextView _addressText;
-        Location _currentLocation;          //object made for location
-        LocationManager _locationManager;   //object for the manager
+        TextView _addressText;
+        Location _currentLocation;
+        LocationManager _locationManager;
 
         string _locationProvider;
         TextView _locationText;
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
+        protected override void OnCreate (Bundle bundle)
+		{
+			base.OnCreate (bundle);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-
-            _locationText = FindViewById<TextView>(Resource.Id.location_text);
-            InitializeLocationManager();
+			// Set our view from the "main" layout resource
+			SetContentView (Resource.Layout.Main);
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
+            //Button button = FindViewById<Button> (Resource.Id.myButton);
 
-            button.Click += delegate {
-                button.Text = string.Format("{0} clicks!", count++);
-            };
+            //button.Click += delegate {
+            //button.Text = string.Format ("{0} clicks!", count++);
+            //};
 
-		}
+            _addressText = FindViewById<TextView>(Resource.Id.address_text);
+            _locationText = FindViewById<TextView>(Resource.Id.location_text);
+            FindViewById<TextView>(Resource.Id.get_address_button).Click += AddressButton_OnClick;
+
+            InitializeLocationManager();
+        }
 
         void InitializeLocationManager()
         {
@@ -60,7 +62,6 @@ namespace GPSLocator.Droid
             }
             Log.Debug(TAG, "Using " + _locationProvider + ".");
         }
-
     }
 }
 
