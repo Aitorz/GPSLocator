@@ -3,16 +3,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-  
-  <TextView
-  android:layout_width="fill_parent"
-  android:textAppearance="?android:attr/textAppearanceMedium"
-  android:layout_height="wrap_content"
-  android:text="Location (when available)"
-  android:id="@+id/location_text"
-  android:layout_marginBottom="15dp" />
-
-  <Button
+    <TextView
+        android:layout_width="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_height="wrap_content"
+        android:text="Location (when available)"
+        android:id="@+id/location_text"
+        android:layout_marginBottom="15dp" />
+    <Button
         android:id="@+id/myButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

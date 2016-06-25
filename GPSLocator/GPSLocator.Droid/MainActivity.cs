@@ -14,9 +14,9 @@ namespace GPSLocator.Droid
     public class MainActivity : Activity, ILocationListener
     {
         static readonly string TAG = "X:" + typeof(Activity1).Name;
-        TextView _addressText;
-        Location _currentLocation;
-        LocationManager _locationManager;
+        //TextView _addressText;
+        Location _currentLocation;          //object made for location
+        LocationManager _locationManager;   //object for the manager
 
         string _locationProvider;
         TextView _locationText;
