@@ -11,10 +11,15 @@ using Android.Location;
 namespace GPSLocator.Droid
 {
     [Activity(Label = "GPSLocator.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, ILocationListener
     {
-        int count = 1;
-  
+        static readonly string TAG = "X:" + typeof(Activity1).Name;
+        TextView _addressText;
+        Location _currentLocation;
+        LocationManager _locationManager;
+
+        string _locationProvider;
+        TextView _locationText;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -22,6 +27,9 @@ namespace GPSLocator.Droid
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+            _locationText = FindViewById<TextView>(Resource.Id.location_text);
+            InitializeLocationManager();
 
             // Get our button from the layout resource,
             // and attach an event to it
@@ -33,7 +41,27 @@ namespace GPSLocator.Droid
 
 		}
 
-	}
+        void InitializeLocationManager()
+        {
+            _locationManager = (LocationManager)GetSystemService(LocationService);
+            Criteria criteriaForLocationService = new Criteria
+            {
+                Accuracy = Accuracy.Fine
+            };
+            IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
+
+            if (acceptableLocationProviders.Any())
+            {
+                _locationProvider = acceptableLocationProviders.First();
+            }
+            else
+            {
+                _locationProvider = string.Empty;
+            }
+            Log.Debug(TAG, "Using " + _locationProvider + ".");
+        }
+
+    }
 }
 
 
