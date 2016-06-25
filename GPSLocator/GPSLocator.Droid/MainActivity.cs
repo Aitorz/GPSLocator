@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Locations;
 
 namespace GPSLocator.Droid
 {
@@ -14,7 +15,15 @@ namespace GPSLocator.Droid
 	{
 		int count = 1;
 
-		protected override void OnCreate (Bundle bundle)
+        static readonly string TAG = "X:" + typeof(MainActivity).Name;
+        TextView _addressText;
+        Location _currentLocation;
+        LocationManager _locationManager;
+
+        string _locationProvider;
+        TextView _locationText;
+
+        protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
