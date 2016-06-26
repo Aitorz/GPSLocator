@@ -41,6 +41,46 @@ namespace GPSLocator.Droid
             _locationManager.RemoveUpdates(this);
         }
 
+        async void AddressButton_OnClick(object sender, EventArgs eventArgs)
+        {
+            if (_currentLocation == null)
+            {
+                _addressText.Text = "Can't determine the current address. Try again in a few minutes.";
+                return;
+            }
+
+            Address address = await ReverseGeocodeCurrentLocation();
+            DisplayAddress(address);
+        }
+
+        async Task<Address> ReverseGeocodeCurrentLocation()
+        {
+            Geocoder geocoder = new Geocoder(this);
+            IList<Address> addressList =
+                await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+
+            Address address = addressList.FirstOrDefault();
+            return address;
+        }
+
+        void DisplayAddress(Address address)
+        {
+            if (address != null)
+            {
+                StringBuilder deviceAddress = new StringBuilder();
+                for (int i = 0; i < address.MaxAddressLineIndex; i++)
+                {
+                    deviceAddress.AppendLine(address.GetAddressLine(i));
+                }
+                // Remove the last comma from the end of the address.
+                _addressText.Text = deviceAddress.ToString();
+            }
+            else
+            {
+                _addressText.Text = "Unable to determine the address. Try again in a few minutes.";
+            }
+        }
+
         protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
