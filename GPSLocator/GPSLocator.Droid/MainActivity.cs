@@ -21,6 +21,26 @@ namespace GPSLocator.Droid
         string _locationProvider;
         TextView _locationText;
 
+        public void OnLocationChanged(Location location) { }
+
+        public void OnProviderDisabled(string provider) { }
+
+        public void OnProviderEnabled(string provider) { }
+
+        public void OnStatusChanged(string provider, Availability status, Bundle extras) { }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            _locationManager.RemoveUpdates(this);
+        }
+
         protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
