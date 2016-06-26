@@ -21,7 +21,20 @@ namespace GPSLocator.Droid
         string _locationProvider;
         TextView _locationText;
 
-        public void OnLocationChanged(Location location) { }
+        public async void OnLocationChanged(Location location)
+        {
+            _currentLocation = location;
+            if (_currentLocation == null)
+            {
+                _locationText.Text = "Unable to determine your location. Try again in a short while.";
+            }
+            else
+            {
+                _locationText.Text = string.Format("{0:f6},{1:f6}", _currentLocation.Latitude, _currentLocation.Longitude);
+                Address address = await ReverseGeocodeCurrentLocation();
+                DisplayAddress(address);
+            }
+        }
 
         public void OnProviderDisabled(string provider) { }
 
